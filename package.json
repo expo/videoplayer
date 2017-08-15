@@ -1,0 +1,47 @@
+{
+  "name": "expo-videoplayer",
+  "version": "0.1.0",
+  "description": "Customizable videoplayer controls for expo",
+  "author": "Abi Raja <abimanyuraja@gmail.com>",
+  "private": true,
+  "main": "index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/expo/videoplayer.git"
+  },
+  "homepage": "https://github.com/expo/videoplayer",
+  "bugs": {
+    "url": "https://github.com/expo/videoplayer/issues"
+  },
+  "scripts": {
+    "build": "babel src --out-dir .",
+    "docs": "node utils/docgen.js"
+  },
+  "dependencies": {
+    "eslint-plugin-prettier": "^2.1.1",
+    "lodash": "^4.17.4",
+    "pretty-ms": "^3.0.0",
+    "prop-types": "^15.5.10",
+    "react": "16.0.0-alpha.12",
+    "react-mixin": "^3.0.5",
+    "react-timer-mixin": "^0.13.3",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-19.0.0.tar.gz"
+  },
+  "peerDependencies": {
+    "expo": "^19.0.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint": "^4.1.1",
+    "babel-cli": "^6.24.1",
+    "eslint-config-exponent": "^5.0.1",
+    "eslint-config-prettier": "^2.1.1",
+    "eslint-plugin-babel": "^4.1.1",
+    "eslint-plugin-flowtype": "^2.34.0",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-react": "^7.0.1",
+    "prettier": "^1.4.0",
+    "react-docgen-markdown-renderer": "^1.0.1"
+  }
+}
