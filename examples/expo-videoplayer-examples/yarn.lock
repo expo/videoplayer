@@ -12,9 +12,9 @@ abab@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/abab/-/abab-1.0.3.tgz#b81de5f7274ec4e756d797cd834f303642724e5d"
 
-abi-expo-videoplayer@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/abi-expo-videoplayer/-/abi-expo-videoplayer-0.1.0.tgz#cd37fe0b5e84ae07a7998e0f0b86e4f2cf065068"
+abi-expo-videoplayer@*:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/abi-expo-videoplayer/-/abi-expo-videoplayer-0.1.1.tgz#2236185b577293312eb7c1a81233997e0f6c3792"
   dependencies:
     eslint-plugin-prettier "^2.1.1"
     lodash "^4.17.4"
