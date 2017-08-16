@@ -54,8 +54,6 @@ var SEEK_STATES = {
 // Don't show the Spinner for very short periods of buffering
 const BUFFERING_SHOW_DELAY = 200;
 
-const DEBUG = true;
-
 export default class VideoPlayer extends React.Component {
   static propTypes = {
     /**
@@ -109,6 +107,11 @@ export default class VideoPlayer extends React.Component {
      */
     playFromPositionMillis: PropTypes.number,
 
+    /**
+     * Write internal logs to console
+     */
+    debug: PropTypes.bool,
+
     // Dealing with fullscreen
     isPortrait: PropTypes.bool,
     switchToLandscape: PropTypes.func,
@@ -140,6 +143,7 @@ export default class VideoPlayer extends React.Component {
     errorCallback: error => {
       console.log('Error: ', error.message, error.type, error.obj);
     },
+    debug: false,
   };
 
   constructor(props) {
@@ -203,11 +207,11 @@ export default class VideoPlayer extends React.Component {
   // Listen for changes in network connectivity
   _setupNetInfoListener() {
     NetInfo.fetch().then(reach => {
-      DEBUG && console.log('[networkState]', reach);
+      this.props.debug && console.log('[networkState]', reach);
       this.setState({ networkState: reach });
     });
     NetInfo.addEventListener('change', reach => {
-      DEBUG && console.log('[networkState]', reach);
+      this.props.debug && console.log('[networkState]', reach);
       this.setState({ networkState: reach });
     });
   }
@@ -215,7 +219,7 @@ export default class VideoPlayer extends React.Component {
   // Handle events during playback
   _setPlaybackState(playbackState) {
     if (this.state.playbackState != playbackState) {
-      DEBUG &&
+      this.props.debug &&
         console.log(
           '[playback]',
           this.state.playbackState,
@@ -232,7 +236,7 @@ export default class VideoPlayer extends React.Component {
   }
 
   _setSeekState(seekState) {
-    DEBUG &&
+    this.props.debug &&
       console.log(
         '[seek]',
         this.state.seekState,
@@ -366,7 +370,7 @@ export default class VideoPlayer extends React.Component {
           );
         })
         .catch(message => {
-          DEBUG && console.log('Seek error: ', message);
+          this.props.debug && console.log('Seek error: ', message);
         });
     }
   };

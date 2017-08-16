@@ -1,9 +1,8 @@
 {
-  "name": "expo-videoplayer",
+  "name": "abi-expo-videoplayer",
   "version": "0.1.0",
   "description": "Customizable videoplayer controls for expo",
   "author": "Abi Raja <abimanyuraja@gmail.com>",
-  "private": true,
   "main": "index.js",
   "license": "MIT",
   "repository": {
