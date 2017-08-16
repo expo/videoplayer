@@ -135,7 +135,7 @@ export default class VideoPlayer extends React.Component {
     thumbImage: THUMB_IMAGE,
     textStyle: {
       color: '#FFFFFF',
-      fontFamily: 'roboto-regular',
+      // fontFamily: 'roboto-regular',
       fontSize: 12,
     },
     // Callbacks
