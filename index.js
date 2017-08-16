@@ -91,6 +91,14 @@ export default class VideoPlayer extends React.Component {
     */
     errorCallback: PropTypes.func,
 
+
+    // Icons
+    playIcon: PropTypes.func,
+    pauseIcon: PropTypes.func,
+    spinner: SpiPropTypes.funcnner,
+    fullscreenEnterIcon: PropTypes.func,
+    fullscreenExitIcon: PropTypes.func,
+
     /**
      * Style to use for the all the text in the videoplayer including seek bar times and error messages
      */
@@ -673,7 +681,7 @@ export default class VideoPlayer extends React.Component {
               justifyContent: 'space-between',
             }}>
             {/* Current time display */}
-            <Text style={[this.props.textStyle, { marginLeft: 5 }]}>
+            <Text style={[this.props.textStyle, { backgroundColor: 'transparent', marginLeft: 5 }]}>
               {this._getMMSSFromMillis(this.state.playbackInstancePosition)}
             </Text>
 
@@ -698,12 +706,13 @@ export default class VideoPlayer extends React.Component {
             </TouchableWithoutFeedback>
 
             {/* Duration display */}
-            <Text style={[this.props.textStyle, { marginRight: 5 }]}>
+            <Text style={[this.props.textStyle, { backgroundColor: 'transparent', marginRight: 5 }]}>
               {this._getMMSSFromMillis(this.state.playbackInstanceDuration)}
             </Text>
 
             {/* Fullscreen control */}
             <Control
+              style={{backgroundColor: 'transparent'}}
               center={false}
               callback={() => {
                 this.props.isPortrait
