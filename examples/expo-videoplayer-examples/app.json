@@ -1,27 +1,22 @@
 {
   "expo": {
     "name": "expo-videoplayer-examples",
-    "description": "No description",
+    "description": "Example app using expo/videoplayer",
     "slug": "expo-videoplayer-examples",
     "privacy": "public",
     "sdkVersion": "19.0.0",
     "version": "1.0.0",
     "orientation": "portrait",
     "primaryColor": "#cccccc",
-    "icon": "./assets/icons/app-icon.png",
-    "notification": {
-      "icon": "./assets/icons/notification-icon.png",
-      "color": "#000000"
-    },
+    "icon": "./assets/app-icon.png",
     "loading": {
-      "icon": "./assets/icons/loading-icon.png",
       "hideExponentText": false
     },
     "packagerOpts": {
       "assetExts": ["ttf"]
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false
     }
   }
 }
