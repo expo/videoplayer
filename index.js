@@ -613,7 +613,10 @@ export default class VideoPlayer extends React.Component {
           }}>
           <Video
             source={source}
-            ref={component => (this._playbackInstance = component)}
+            ref={component => { 
+              this._playbackInstance = component;
+              ref && ref(component);
+            }}
             callback={this._playbackCallback.bind(this)}
             style={{
               width: videoWidth,
