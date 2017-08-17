@@ -95,7 +95,7 @@ export default class VideoPlayer extends React.Component {
     // Icons
     playIcon: PropTypes.func,
     pauseIcon: PropTypes.func,
-    spinner: SpiPropTypes.funcnner,
+    spinner: PropTypes.func,
     fullscreenEnterIcon: PropTypes.func,
     fullscreenExitIcon: PropTypes.func,
 
