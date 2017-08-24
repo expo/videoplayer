@@ -617,7 +617,7 @@ export default class VideoPlayer extends React.Component {
               this._playbackInstance = component;
               ref && ref(component);
             }}
-            callback={this._playbackCallback.bind(this)}
+            onPlaybackStatusUpdate={this._playbackCallback.bind(this)}
             style={{
               width: videoWidth,
               height: videoHeight,
