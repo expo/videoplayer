@@ -109,12 +109,7 @@ export default class VideoPlayer extends React.Component {
      * See Expo documentation on <Video>. `source` is required.
      */
     videoProps: PropTypes.object,
-
-    /**
-     * Position within video to play from
-     */
-    playFromPositionMillis: PropTypes.number,
-
+    
     /**
      * Write internal logs to console
      */
@@ -143,7 +138,6 @@ export default class VideoPlayer extends React.Component {
     thumbImage: THUMB_IMAGE,
     textStyle: {
       color: '#FFFFFF',
-      // fontFamily: 'roboto-regular',
       fontSize: 12,
     },
     // Callbacks
@@ -192,23 +186,6 @@ export default class VideoPlayer extends React.Component {
         message: 'setAudioModeAsync error',
         obj: e,
       });
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (
-      this._playbackInstance !== null &&
-      nextProps.playFromPositionMillis !== this.props.playFromPositionMillis
-    ) {
-      this._playbackInstance
-        .playFromPositionAsync(nextProps.playFromPositionMillis)
-        .catch(e => {
-          this.props.errorCallback({
-            type: 'NON_FATAL',
-            message: 'playFromPositionMillis error',
-            obj: e,
-          });
-        });
     }
   }
 
