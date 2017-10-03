@@ -9,7 +9,7 @@ You can try the [example app on Expo here](https://exp.host/@abiraja/expo-videop
 
 ## Install
 
-`npm install abi-expo-videoplayer`
+`npm install @expo/videoplayer`
 
 ## Examples
 
@@ -17,7 +17,7 @@ See the examples directory for a full example.
 
 ```
 import { Video } from 'expo';
-import VideoPlayer from 'abi-expo-videoplayer';
+import VideoPlayer from '@expo/videoplayer';
 
 <VideoPlayer
   videoProps={{
