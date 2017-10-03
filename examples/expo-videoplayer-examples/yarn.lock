@@ -9,8 +9,8 @@
     react-native-vector-icons "4.1.1"
 
 "@expo/videoplayer@*":
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/@expo/videoplayer/-/videoplayer-0.1.6.tgz#122f21515339edcb7217519f734122ebc18b9468"
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/@expo/videoplayer/-/videoplayer-0.1.7.tgz#f0ea1cb8ac8c3736c3eb1cfc548725d1a1d494e4"
   dependencies:
     eslint-plugin-prettier "^2.1.1"
     lodash "^4.17.4"

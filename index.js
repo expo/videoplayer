@@ -91,7 +91,6 @@ export default class VideoPlayer extends React.Component {
     */
     errorCallback: PropTypes.func,
 
-
     // Icons
     playIcon: PropTypes.func,
     pauseIcon: PropTypes.func,
@@ -109,7 +108,7 @@ export default class VideoPlayer extends React.Component {
      * See Expo documentation on <Video>. `source` is required.
      */
     videoProps: PropTypes.object,
-    
+
     /**
      * Write internal logs to console
      */
@@ -146,6 +145,16 @@ export default class VideoPlayer extends React.Component {
       console.log('Error: ', error.message, error.type, error.obj);
     },
     debug: false,
+    switchToLandscape: () => {
+      console.warn(
+        'Pass in this function `switchToLandscape` in props to enable fullscreening'
+      );
+    },
+    switchToPortrait: () => {
+      console.warn(
+        'Pass in this function `switchToLandscape` in props to enable fullscreening'
+      );
+    },
   };
 
   constructor(props) {
@@ -590,7 +599,7 @@ export default class VideoPlayer extends React.Component {
           }}>
           <Video
             source={source}
-            ref={component => { 
+            ref={component => {
               this._playbackInstance = component;
               ref && ref(component);
             }}
@@ -661,7 +670,11 @@ export default class VideoPlayer extends React.Component {
               justifyContent: 'space-between',
             }}>
             {/* Current time display */}
-            <Text style={[this.props.textStyle, { backgroundColor: 'transparent', marginLeft: 5 }]}>
+            <Text
+              style={[
+                this.props.textStyle,
+                { backgroundColor: 'transparent', marginLeft: 5 },
+              ]}>
               {this._getMMSSFromMillis(this.state.playbackInstancePosition)}
             </Text>
 
@@ -686,13 +699,17 @@ export default class VideoPlayer extends React.Component {
             </TouchableWithoutFeedback>
 
             {/* Duration display */}
-            <Text style={[this.props.textStyle, { backgroundColor: 'transparent', marginRight: 5 }]}>
+            <Text
+              style={[
+                this.props.textStyle,
+                { backgroundColor: 'transparent', marginRight: 5 },
+              ]}>
               {this._getMMSSFromMillis(this.state.playbackInstanceDuration)}
             </Text>
 
             {/* Fullscreen control */}
             <Control
-              style={{backgroundColor: 'transparent'}}
+              style={{ backgroundColor: 'transparent' }}
               center={false}
               callback={() => {
                 this.props.isPortrait
