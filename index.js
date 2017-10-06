@@ -98,7 +98,6 @@ export default class VideoPlayer extends React.Component {
     */
     errorCallback: PropTypes.func,
 
-
     // Icons
     playIcon: PropTypes.func,
     pauseIcon: PropTypes.func,
@@ -116,7 +115,7 @@ export default class VideoPlayer extends React.Component {
      * See Expo documentation on <Video>. `source` is required.
      */
     videoProps: PropTypes.object,
-    
+
     /**
      * Write internal logs to console
      */
@@ -154,6 +153,16 @@ export default class VideoPlayer extends React.Component {
     },
     debug: false,
     initialControlsOpacity: 0
+    switchToLandscape: () => {
+      console.warn(
+        'Pass in this function `switchToLandscape` in props to enable fullscreening'
+      );
+    },
+    switchToPortrait: () => {
+      console.warn(
+        'Pass in this function `switchToLandscape` in props to enable fullscreening'
+      );
+    },
   };
 
   constructor(props) {
@@ -197,16 +206,21 @@ export default class VideoPlayer extends React.Component {
     }
   }
 
-  // Listen for changes in network connectivity
+  componentWillUnmount() {
+    NetInfo.removeEventListener('connectionChange', this._onConnectionChange.bind(this));
+  }
+
+  _onConnectionChange(connectionInfo) {
+    this.props.debug && console.log('[networkState]', connectionInfo.type);
+    this.setState({ networkState: connectionInfo.type });
+  }
+
   _setupNetInfoListener() {
-    NetInfo.fetch().then(reach => {
-      this.props.debug && console.log('[networkState]', reach);
-      this.setState({ networkState: reach });
+    NetInfo.getConnectionInfo().then(connectionInfo => {
+      this.props.debug && console.log('[networkState]', connectionInfo.type);
+      this.setState({ networkState: connectionInfo.type });
     });
-    NetInfo.addEventListener('change', reach => {
-      this.props.debug && console.log('[networkState]', reach);
-      this.setState({ networkState: reach });
-    });
+    NetInfo.addEventListener('connectionChange', this._onConnectionChange.bind(this));
   }
 
   // Handle events during playback
@@ -598,7 +612,7 @@ export default class VideoPlayer extends React.Component {
           }}>
           <Video
             source={source}
-            ref={component => { 
+            ref={component => {
               this._playbackInstance = component;
               ref && ref(component);
             }}
@@ -669,7 +683,11 @@ export default class VideoPlayer extends React.Component {
               justifyContent: 'space-between',
             }}>
             {/* Current time display */}
-            <Text style={[this.props.textStyle, { backgroundColor: 'transparent', marginLeft: 5 }]}>
+            <Text
+              style={[
+                this.props.textStyle,
+                { backgroundColor: 'transparent', marginLeft: 5 },
+              ]}>
               {this._getMMSSFromMillis(this.state.playbackInstancePosition)}
             </Text>
 
@@ -694,13 +712,17 @@ export default class VideoPlayer extends React.Component {
             </TouchableWithoutFeedback>
 
             {/* Duration display */}
-            <Text style={[this.props.textStyle, { backgroundColor: 'transparent', marginRight: 5 }]}>
+            <Text
+              style={[
+                this.props.textStyle,
+                { backgroundColor: 'transparent', marginRight: 5 },
+              ]}>
               {this._getMMSSFromMillis(this.state.playbackInstanceDuration)}
             </Text>
 
             {/* Fullscreen control */}
             <Control
-              style={{backgroundColor: 'transparent'}}
+              style={{ backgroundColor: 'transparent' }}
               center={false}
               callback={() => {
                 this.props.isPortrait
