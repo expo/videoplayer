@@ -82,6 +82,13 @@ export default class VideoPlayer extends React.Component {
     hideControlsTimerDuration: PropTypes.number,
 
     /**
+     * Initial Value for controls opacity, when the component starts.
+     * Default value is 0.
+     *
+     */
+    initialControlsOpacity: PropTypes.number,
+
+    /**
      * Callback that gets passed `playbackStatus` objects for the underlying video element
      */
     playbackCallback: PropTypes.func,
@@ -145,6 +152,7 @@ export default class VideoPlayer extends React.Component {
       console.log('Error: ', error.message, error.type, error.obj);
     },
     debug: false,
+    initialControlsOpacity: 0
     switchToLandscape: () => {
       console.warn(
         'Pass in this function `switchToLandscape` in props to enable fullscreening'
@@ -172,7 +180,7 @@ export default class VideoPlayer extends React.Component {
       // Error message if we are in PLAYBACK_STATES.ERROR
       error: null,
       // Controls display state
-      controlsOpacity: new Animated.Value(0),
+      controlsOpacity: new Animated.Value(this.props.initialControlsOpacity),
       controlsState: CONTROL_STATES.HIDDEN,
     };
   }
