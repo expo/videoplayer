@@ -20,7 +20,7 @@ export default class DefaultScreen extends BaseScreen {
   }
 
   render() {
-    const RateButton = ({ rate }) =>
+    const RateButton = ({ rate }) => (
       <TouchableHighlight
         style={{
           marginLeft: 10,
@@ -30,10 +30,9 @@ export default class DefaultScreen extends BaseScreen {
           borderColor: 'black',
         }}
         onPress={this.changeRate.bind(this, rate)}>
-        <Text>
-          {rate + 'x'}
-        </Text>
-      </TouchableHighlight>;
+        <Text>{rate + 'x'}</Text>
+      </TouchableHighlight>
+    );
     return (
       <View style={styles.container}>
         <ScrollView
@@ -52,6 +51,7 @@ export default class DefaultScreen extends BaseScreen {
                 this._playbackInstance = component;
               },
             }}
+            showControlsOnLoad={true}
             isPortrait={this.state.isPortrait}
             switchToLandscape={this.switchToLandscape.bind(this)}
             switchToPortrait={this.switchToPortrait.bind(this)}

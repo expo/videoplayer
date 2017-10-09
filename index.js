@@ -118,6 +118,8 @@ export default class VideoPlayer extends React.Component {
     isPortrait: PropTypes.bool,
     switchToLandscape: PropTypes.func,
     switchToPortrait: PropTypes.func,
+
+    showControlsOnLoad: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -155,6 +157,7 @@ export default class VideoPlayer extends React.Component {
         'Pass in this function `switchToLandscape` in props to enable fullscreening'
       );
     },
+    showControlsOnLoad: false,
   };
 
   constructor(props) {
@@ -172,13 +175,19 @@ export default class VideoPlayer extends React.Component {
       // Error message if we are in PLAYBACK_STATES.ERROR
       error: null,
       // Controls display state
-      controlsOpacity: new Animated.Value(0),
-      controlsState: CONTROL_STATES.HIDDEN,
+      controlsOpacity: new Animated.Value(props.showControlsOnLoad ? 1 : 0),
+      controlsState: props.showControlsOnLoad
+        ? CONTROL_STATES.SHOWN
+        : CONTROL_STATES.HIDDEN,
     };
   }
 
   async componentDidMount() {
     this._setupNetInfoListener();
+
+    if (this.state.controlsState === CONTROL_STATES.SHOWN) {
+      this._resetControlsTimer();
+    }
 
     // Set audio mode to play even in silent mode (like the YouTube app)
     try {
@@ -199,7 +208,10 @@ export default class VideoPlayer extends React.Component {
   }
 
   componentWillUnmount() {
-    NetInfo.removeEventListener('connectionChange', this._onConnectionChange.bind(this));
+    NetInfo.removeEventListener(
+      'connectionChange',
+      this._onConnectionChange.bind(this)
+    );
   }
 
   _onConnectionChange(connectionInfo) {
@@ -212,7 +224,10 @@ export default class VideoPlayer extends React.Component {
       this.props.debug && console.log('[networkState]', connectionInfo.type);
       this.setState({ networkState: connectionInfo.type });
     });
-    NetInfo.addEventListener('connectionChange', this._onConnectionChange.bind(this));
+    NetInfo.addEventListener(
+      'connectionChange',
+      this._onConnectionChange.bind(this)
+    );
   }
 
   // Handle events during playback
