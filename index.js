@@ -209,11 +209,11 @@ export default class VideoPlayer extends React.Component {
 
   // Listen for changes in network connectivity
   _setupNetInfoListener() {
-    NetInfo.fetch().then(reach => {
+    NetInfo.getConnectionInfo().then(reach => {
       this.props.debug && console.log('[networkState]', reach);
       this.setState({ networkState: reach });
     });
-    NetInfo.addEventListener('change', reach => {
+    NetInfo.addEventListener('connectionChange', reach => {
       this.props.debug && console.log('[networkState]', reach);
       this.setState({ networkState: reach });
     });
