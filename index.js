@@ -207,27 +207,16 @@ export default class VideoPlayer extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-    NetInfo.removeEventListener(
-      'connectionChange',
-      this._onConnectionChange.bind(this)
-    );
-  }
-
-  _onConnectionChange(connectionInfo) {
-    this.props.debug && console.log('[networkState]', connectionInfo.type);
-    this.setState({ networkState: connectionInfo.type });
-  }
-
+  // Listen for changes in network connectivity
   _setupNetInfoListener() {
-    NetInfo.getConnectionInfo().then(connectionInfo => {
-      this.props.debug && console.log('[networkState]', connectionInfo.type);
-      this.setState({ networkState: connectionInfo.type });
+    NetInfo.fetch().then(reach => {
+      this.props.debug && console.log('[networkState]', reach);
+      this.setState({ networkState: reach });
     });
-    NetInfo.addEventListener(
-      'connectionChange',
-      this._onConnectionChange.bind(this)
-    );
+    NetInfo.addEventListener('change', reach => {
+      this.props.debug && console.log('[networkState]', reach);
+      this.setState({ networkState: reach });
+    });
   }
 
   // Handle events during playback

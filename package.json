@@ -39,6 +39,6 @@
     "react-docgen-markdown-renderer": "^1.0.1"
   },
   "peerDependencies": {
-    "expo": "^21.0.0"
+    "expo": "^20.0.0"
   }
 }
