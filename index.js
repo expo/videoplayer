@@ -162,6 +162,12 @@ export default class VideoPlayer extends React.Component {
 
   constructor(props) {
     super(props);
+
+    if (props.source == null) {
+      console.error("`source` is a required property");
+      throw new Error("`Source` is a required property");
+    }
+
     this.state = {
       // Playback state
       playbackState: PLAYBACK_STATES.LOADING,
@@ -212,6 +218,12 @@ export default class VideoPlayer extends React.Component {
       'connectionChange',
       this._onConnectionChange.bind(this)
     );
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.source == null) {
+      throw new Error("`Source` is a required property");
+    }
   }
 
   _onConnectionChange(connectionInfo) {
@@ -549,11 +561,6 @@ export default class VideoPlayer extends React.Component {
       source,
       ...otherVideoProps
     } = this.props.videoProps;
-
-    // TODO: Best way to throw required property missing error
-    if (!source) {
-      console.error('`source` is a required property');
-    }
 
     const Control = ({ callback, center, children, ...otherProps }) =>
       <TouchableOpacity
