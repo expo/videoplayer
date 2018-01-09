@@ -10,6 +10,7 @@ prop | type | default | required | description
 **errorCallback** | `Function` | `error => {   console.log('Error: ', error.message, error.type, error.obj); }` | :x: | Error callback (lots of errors are non-fatal and the video will continue to play)
 **fadeInDuration** | `Number` | `200` | :x: | How long should the fadeIn animation for the controls run? (in milliseconds) Default value is 200.
 **fadeOutDuration** | `Number` | `1000` | :x: | How long should the fadeOut animation run? (in milliseconds) Default value is 1000.
+**fs** | `Boolean` | `true` | :x: | Allow fullscreen button
 **fullscreenEnterIcon** | `Unknown` | `FullscreenEnterIcon` | :x: | 
 **fullscreenExitIcon** | `Unknown` | `FullscreenExitIcon` | :x: | 
 **hideControlsTimerDuration** | `Number` | `4000` | :x: | If the user has not interacted with the controls, how long should the controls stay visible? (in milliseconds) Default value is 4000.

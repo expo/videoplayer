@@ -91,6 +91,11 @@ export default class VideoPlayer extends React.Component {
     */
     errorCallback: PropTypes.func,
 
+    /**
+    * Allow fullscreen button
+    */
+    fs: PropTypes.bool,
+
     // Icons
     playIcon: PropTypes.func,
     pauseIcon: PropTypes.func,
@@ -158,6 +163,8 @@ export default class VideoPlayer extends React.Component {
       );
     },
     showControlsOnLoad: false,
+    // Control Options
+    fs: true,
   };
 
   constructor(props) {
@@ -729,7 +736,7 @@ export default class VideoPlayer extends React.Component {
             </Text>
 
             {/* Fullscreen control */}
-            <Control
+            {this.props.fs && <Control
               style={{ backgroundColor: 'transparent' }}
               center={false}
               callback={() => {
@@ -740,7 +747,7 @@ export default class VideoPlayer extends React.Component {
               {this.props.isPortrait
                 ? <FullscreenEnterIcon />
                 : <FullscreenExitIcon />}
-            </Control>
+            </Control>}
           </Animated.View>
         </View>
       </TouchableWithoutFeedback>
