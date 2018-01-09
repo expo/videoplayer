@@ -19,8 +19,6 @@
   },
   "dependencies": {
     "eslint-plugin-prettier": "^2.4.0",
-    "lodash": "^4.17.4",
-    "pretty-ms": "^3.1.0",
     "prop-types": "^15.6.0",
     "react-mixin": "^3.1.1",
     "react-timer-mixin": "^0.13.3"
