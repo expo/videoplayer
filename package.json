@@ -18,27 +18,27 @@
     "docs": "node utils/docgen.js"
   },
   "dependencies": {
-    "eslint-plugin-prettier": "^2.1.1",
+    "eslint-plugin-prettier": "^2.4.0",
     "lodash": "^4.17.4",
-    "pretty-ms": "^3.0.0",
-    "prop-types": "^15.5.10",
-    "react-mixin": "^3.0.5",
+    "pretty-ms": "^3.1.0",
+    "prop-types": "^15.6.0",
+    "react-mixin": "^3.1.1",
     "react-timer-mixin": "^0.13.3"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-eslint": "^7.2.3",
-    "eslint": "^4.1.1",
-    "babel-cli": "^6.24.1",
+    "eslint": "^4.15.0",
     "eslint-config-exponent": "^5.0.1",
-    "eslint-config-prettier": "^2.1.1",
+    "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-babel": "^4.1.1",
-    "eslint-plugin-flowtype": "^2.34.0",
-    "eslint-plugin-import": "^2.3.0",
-    "eslint-plugin-react": "^7.0.1",
-    "prettier": "^1.4.0",
+    "eslint-plugin-flowtype": "^2.41.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-react": "^7.5.1",
+    "prettier": "^1.9.2",
     "react-docgen-markdown-renderer": "^1.0.1"
   },
   "peerDependencies": {
-    "expo": ">22.0.0"
+    "expo": ">=22.0.0"
   }
 }
