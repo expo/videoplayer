@@ -87,8 +87,8 @@ export default class VideoPlayer extends React.Component {
     playbackCallback: PropTypes.func,
 
     /**
-    * Error callback (lots of errors are non-fatal and the video will continue to play)
-    */
+     * Error callback (lots of errors are non-fatal and the video will continue to play)
+     */
     errorCallback: PropTypes.func,
 
     // Icons
@@ -97,6 +97,8 @@ export default class VideoPlayer extends React.Component {
     spinner: PropTypes.func,
     fullscreenEnterIcon: PropTypes.func,
     fullscreenExitIcon: PropTypes.func,
+
+    showFullscreenButton: PropTypes.bool,
 
     /**
      * Style to use for the all the text in the videoplayer including seek bar times and error messages
@@ -134,6 +136,7 @@ export default class VideoPlayer extends React.Component {
     spinner: Spinner,
     fullscreenEnterIcon: FullscreenEnterIcon,
     fullscreenExitIcon: FullscreenExitIcon,
+    showFullscreenButton: true,
     replayIcon: ReplayIcon,
     trackImage: TRACK_IMAGE,
     thumbImage: THUMB_IMAGE,
@@ -284,7 +287,9 @@ export default class VideoPlayer extends React.Component {
     if (!playbackStatus.isLoaded) {
       if (playbackStatus.error) {
         this._setPlaybackState(PLAYBACK_STATES.ERROR);
-        const errorMsg = `Encountered a fatal error during playback: ${playbackStatus.error}`;
+        const errorMsg = `Encountered a fatal error during playback: ${
+          playbackStatus.error
+        }`;
         this.setState({
           error: errorMsg,
         });
@@ -555,7 +560,7 @@ export default class VideoPlayer extends React.Component {
       console.error('`source` is a required property');
     }
 
-    const Control = ({ callback, center, children, ...otherProps }) =>
+    const Control = ({ callback, center, children, ...otherProps }) => (
       <TouchableOpacity
         {...otherProps}
         hitSlop={{ top: 20, left: 20, bottom: 20, right: 20 }}
@@ -577,9 +582,10 @@ export default class VideoPlayer extends React.Component {
           }>
           {children}
         </View>
-      </TouchableOpacity>;
+      </TouchableOpacity>
+    );
 
-    const CenteredView = ({ children, style, ...otherProps }) =>
+    const CenteredView = ({ children, style, ...otherProps }) => (
       <Animated.View
         {...otherProps}
         style={[
@@ -596,9 +602,10 @@ export default class VideoPlayer extends React.Component {
           style,
         ]}>
         {children}
-      </Animated.View>;
+      </Animated.View>
+    );
 
-    const ErrorText = ({ text }) =>
+    const ErrorText = ({ text }) => (
       <View
         style={{
           position: 'absolute',
@@ -610,7 +617,8 @@ export default class VideoPlayer extends React.Component {
         <Text style={[this.props.textStyle, { textAlign: 'center' }]}>
           {text}
         </Text>
-      </View>;
+      </View>
+    );
 
     return (
       <TouchableWithoutFeedback onPress={this._toggleControls.bind(this)}>
@@ -636,43 +644,49 @@ export default class VideoPlayer extends React.Component {
           {((this.state.playbackState == PLAYBACK_STATES.BUFFERING &&
             Date.now() - this.state.lastPlaybackStateUpdate >
               BUFFERING_SHOW_DELAY) ||
-            this.state.playbackState == PLAYBACK_STATES.LOADING) &&
+            this.state.playbackState == PLAYBACK_STATES.LOADING) && (
             <CenteredView>
               <Spinner />
-            </CenteredView>}
+            </CenteredView>
+          )}
 
           {/* Play/pause buttons */}
           {(this.state.seekState == SEEK_STATES.NOT_SEEKING ||
             this.state.seekState == SEEK_STATES.SEEKED) &&
             (this.state.playbackState == PLAYBACK_STATES.PLAYING ||
-              this.state.playbackState == PLAYBACK_STATES.PAUSED) &&
-            <CenteredView
-              pointerEvents={
-                this.state.controlsState === CONTROL_STATES.HIDDEN
-                  ? 'none'
-                  : 'auto'
-              }
-              style={{
-                opacity: this.state.controlsOpacity,
-              }}>
-              <Control center={true} callback={this._togglePlay.bind(this)}>
-                {this.state.playbackState == PLAYBACK_STATES.PLAYING
-                  ? <PauseIcon />
-                  : <PlayIcon />}
-              </Control>
-            </CenteredView>}
+              this.state.playbackState == PLAYBACK_STATES.PAUSED) && (
+              <CenteredView
+                pointerEvents={
+                  this.state.controlsState === CONTROL_STATES.HIDDEN
+                    ? 'none'
+                    : 'auto'
+                }
+                style={{
+                  opacity: this.state.controlsOpacity,
+                }}>
+                <Control center={true} callback={this._togglePlay.bind(this)}>
+                  {this.state.playbackState == PLAYBACK_STATES.PLAYING ? (
+                    <PauseIcon />
+                  ) : (
+                    <PlayIcon />
+                  )}
+                </Control>
+              </CenteredView>
+            )}
 
           {/* Replay button to show at the end of a video */}
-          {this.state.playbackState == PLAYBACK_STATES.ENDED &&
+          {this.state.playbackState == PLAYBACK_STATES.ENDED && (
             <CenteredView>
               <Control center={true} callback={this._replay.bind(this)}>
                 <ReplayIcon />
               </Control>
-            </CenteredView>}
+            </CenteredView>
+          )}
 
           {/* Error display */}
-          {this.state.playbackState == PLAYBACK_STATES.ERROR &&
-            <ErrorText text={this.state.error} />}
+          {this.state.playbackState == PLAYBACK_STATES.ERROR && (
+            <ErrorText text={this.state.error} />
+          )}
 
           {/* Bottom bar */}
           <Animated.View
@@ -729,18 +743,22 @@ export default class VideoPlayer extends React.Component {
             </Text>
 
             {/* Fullscreen control */}
-            <Control
-              style={{ backgroundColor: 'transparent' }}
-              center={false}
-              callback={() => {
-                this.props.isPortrait
-                  ? this.props.switchToLandscape()
-                  : this.props.switchToPortrait();
-              }}>
-              {this.props.isPortrait
-                ? <FullscreenEnterIcon />
-                : <FullscreenExitIcon />}
-            </Control>
+            {this.props.showFullscreenButton && (
+              <Control
+                style={{ backgroundColor: 'transparent' }}
+                center={false}
+                callback={() => {
+                  this.props.isPortrait
+                    ? this.props.switchToLandscape()
+                    : this.props.switchToPortrait();
+                }}>
+                {this.props.isPortrait ? (
+                  <FullscreenEnterIcon />
+                ) : (
+                  <FullscreenExitIcon />
+                )}
+              </Control>
+            )}
           </Animated.View>
         </View>
       </TouchableWithoutFeedback>
