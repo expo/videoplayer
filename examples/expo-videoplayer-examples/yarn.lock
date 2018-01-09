@@ -8,11 +8,10 @@
   dependencies:
     react-native-vector-icons "4.1.1"
 
-"@expo/videoplayer@^0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@expo/videoplayer/-/videoplayer-0.3.1.tgz#bb8b82ac5a2357347ae9104f25dca910a4aa6832"
+"@expo/videoplayer@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@expo/videoplayer/-/videoplayer-0.4.0.tgz#07ace477958f8a4f2b42291b4eaa4b2cf8bea5c2"
   dependencies:
-    eslint-plugin-prettier "^2.4.0"
     prop-types "^15.6.0"
     react-mixin "^3.1.1"
     react-timer-mixin "^0.13.3"
@@ -1807,13 +1806,6 @@ eslint-plugin-prettier@^2.1.1:
     fast-diff "^1.1.1"
     jest-docblock "^20.0.1"
 
-eslint-plugin-prettier@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-prettier/-/eslint-plugin-prettier-2.4.0.tgz#85cab0775c6d5e3344ef01e78d960f166fb93aae"
-  dependencies:
-    fast-diff "^1.1.1"
-    jest-docblock "^21.0.0"
-
 eslint-plugin-react@^7.0.1:
   version "7.4.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.4.0.tgz#300a95861b9729c087d362dd64abcc351a74364a"
@@ -2843,10 +2835,6 @@ jest-docblock@20.1.0-echo.1:
 jest-docblock@^20.0.1, jest-docblock@^20.0.3:
   version "20.0.3"
   resolved "https://registry.yarnpkg.com/jest-docblock/-/jest-docblock-20.0.3.tgz#17bea984342cc33d83c50fbe1545ea0efaa44712"
-
-jest-docblock@^21.0.0:
-  version "21.2.0"
-  resolved "https://registry.yarnpkg.com/jest-docblock/-/jest-docblock-21.2.0.tgz#51529c3b30d5fd159da60c27ceedc195faf8d414"
 
 jest-environment-jsdom@^19.0.2:
   version "19.0.2"

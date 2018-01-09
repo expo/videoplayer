@@ -9,7 +9,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "@expo/videoplayer": "^0.3.1",
+    "@expo/videoplayer": "^0.4.0",
     "expo": "^22.0.0",
     "react": "16.0.0-beta.5",
     "react-native": "https://github.com/expo/react-native/archive/sdk-22.0.1.tar.gz",

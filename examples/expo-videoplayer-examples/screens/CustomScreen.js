@@ -15,13 +15,14 @@ var styles = {
 export default class CustomScreen extends BaseScreen {
   render() {
     const COLOR = '#92DCE5';
-    const icon = (name, size = 36) => () =>
+    const icon = (name, size = 36) => () => (
       <Ionicons
         name={name}
         size={size}
         color={COLOR}
         style={{ textAlign: 'center' }}
-      />;
+      />
+    );
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container}>
@@ -44,6 +45,7 @@ export default class CustomScreen extends BaseScreen {
               color: COLOR,
               fontSize: 12,
             }}
+            showFullscreenButton={false}
             isPortrait={this.state.isPortrait}
             switchToLandscape={this.switchToLandscape.bind(this)}
             switchToPortrait={this.switchToPortrait.bind(this)}
