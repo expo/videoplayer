@@ -21,6 +21,8 @@ prop | type | default | required | description
 **quickFadeOutDuration** | `Number` | `200` | :x: | How long should the fadeOut animation run when the screen is tapped when the controls are visible? (in milliseconds) Default value is 200.
 **replayIcon** | `Unknown` | `ReplayIcon` | :x: | 
 **showControlsOnLoad** | `Boolean` | `false` | :x: | 
+**isLive** | `Boolean` | `false` | :x: | Removes scrubber (seek) bar and changes file duration indicator ti LIVE when isLive
+property is set to true.
 **showFullscreenButton** | `Boolean` | `true` | :x: | 
 **spinner** | `Function` | `Spinner` | :x: | 
 **switchToLandscape** | `Function` | `() => {   console.warn(     'Pass in this function `switchToLandscape` in props to enable fullscreening'   ); }` | :x: | 
