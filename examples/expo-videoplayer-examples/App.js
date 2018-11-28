@@ -2,7 +2,7 @@ import React from 'react';
 import { Platform, StatusBar, View } from 'react-native';
 import { AppLoading, Asset, Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
-import { TabNavigator, TabBarBottom, StackNavigator } from 'react-navigation';
+import { createMaterialTopTabNavigator,  createBottomTabNavigator, createStackNavigator, createAppContainer } from 'react-navigation';
 
 import DefaultScreen from './screens/DefaultScreen';
 import CustomScreen from './screens/CustomScreen';
@@ -29,7 +29,7 @@ var styles = {
   },
 };
 
-const MainTabNavigator = TabNavigator(
+const MainTabNavigator = createMaterialTopTabNavigator(
   {
     Default: {
       screen: DefaultScreen,
@@ -67,14 +67,13 @@ const MainTabNavigator = TabNavigator(
         );
       },
     }),
-    tabBarComponent: TabBarBottom,
     tabBarPosition: 'bottom',
     animationEnabled: false,
     swipeEnabled: false,
   }
 );
 
-const RootStackNavigator = StackNavigator(
+const RootStackNavigator = createStackNavigator(
   {
     Main: {
       screen: MainTabNavigator,
@@ -88,6 +87,9 @@ const RootStackNavigator = StackNavigator(
     }),
   }
 );
+
+const AppContainer =  createAppContainer(RootStackNavigator);
+
 
 export default class App extends React.Component {
   state = {
@@ -109,7 +111,7 @@ export default class App extends React.Component {
             backgroundColor: '#fff',
           }}>
           <StatusBar hidden={true} />
-          <RootStackNavigator />
+          <AppContainer />
         </View>
       );
     }
@@ -118,10 +120,10 @@ export default class App extends React.Component {
   async _loadAssetsAsync() {
     try {
       await Promise.all([
-        Font.loadAsync([
+        Font.loadAsync({
           // This is the font that we are using for our tab bar
-          Ionicons.font,
-        ]),
+          ...Ionicons.font,
+        }),
       ]);
     } catch (e) {
       // In this case, you might want to report the error to your error

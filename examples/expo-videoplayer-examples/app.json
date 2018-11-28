@@ -4,7 +4,7 @@
     "description": "Example app using expo/videoplayer",
     "slug": "expo-videoplayer-examples",
     "privacy": "public",
-    "sdkVersion": "22.0.0",
+    "sdkVersion": "31.0.0",
     "version": "1.0.1",
     "orientation": "portrait",
     "primaryColor": "#cccccc",
