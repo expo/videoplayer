@@ -40,6 +40,7 @@ const MainTabNavigator = createMaterialTopTabNavigator(
   },
   {
     navigationOptions: ({ navigation }) => ({
+      header: null,
       tabBarIcon: ({ focused }) => {
         const { routeName } = navigation.state;
         let iconName;
@@ -81,9 +82,7 @@ const RootStackNavigator = createStackNavigator(
   },
   {
     navigationOptions: () => ({
-      headerTitleStyle: {
-        fontWeight: 'normal',
-      },
+      header: 'none'
     }),
   }
 );
