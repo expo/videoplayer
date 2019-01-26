@@ -104,6 +104,7 @@ export default class VideoPlayer extends React.Component {
      * Style to use for the all the text in the videoplayer including seek bar times and error messages
      */
     textStyle: PropTypes.object,
+    videoWidth: PropTypes.number,
 
     /**
      * Props to use into the underlying <Video>. Useful for configuring autoplay, playback speed, and other Video properties.
@@ -535,7 +536,7 @@ export default class VideoPlayer extends React.Component {
   };
 
   render() {
-    const videoWidth = Dimensions.get('window').width;
+    const videoWidth = this.props.videoWidth || Dimensions.get('window').width;
     const videoHeight = videoWidth * (9 / 16);
     const centeredContentWidth = 60;
 
