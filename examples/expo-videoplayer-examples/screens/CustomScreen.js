@@ -28,6 +28,7 @@ export default class CustomScreen extends BaseScreen {
         <ScrollView style={styles.container}>
           <VideoPlayer
             videoProps={{
+              isMuted: true,
               shouldPlay: false,
               resizeMode: Video.RESIZE_MODE_CONTAIN,
               source: {
@@ -35,10 +36,10 @@ export default class CustomScreen extends BaseScreen {
               },
               isMuted: false,
             }}
-            playIcon={icon('ios-play-outline')}
-            pauseIcon={icon('ios-pause-outline')}
-            fullscreenEnterIcon={icon('ios-expand-outline', 28)}
-            fullscreenExitIcon={icon('ios-contract-outline', 28)}
+            playIcon={icon('ios-play-circle')}
+            pauseIcon={icon('ios-pause')}
+            fullscreenEnterIcon={icon('ios-expand', 28)}
+            fullscreenExitIcon={icon('ios-contract', 28)}
             trackImage={require('../assets/track.png')}
             thumbImage={require('../assets/thumb.png')}
             textStyle={{

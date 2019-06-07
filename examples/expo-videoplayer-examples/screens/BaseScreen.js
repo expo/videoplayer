@@ -16,7 +16,7 @@ export default class BaseScreen extends React.Component {
   };
 
   componentDidMount() {
-    ScreenOrientation.allow(ScreenOrientation.Orientation.ALL);
+    ScreenOrientation.allowAsync(ScreenOrientation.Orientation.ALL);
     Dimensions.addEventListener(
       'change',
       this.orientationChangeHandler.bind(this)
@@ -24,7 +24,7 @@ export default class BaseScreen extends React.Component {
   }
 
   componentWillUnmount() {
-    ScreenOrientation.allow(ScreenOrientation.Orientation.PORTRAIT);
+    ScreenOrientation.allowAsync(ScreenOrientation.Orientation.PORTRAIT);
     Dimensions.removeEventListener('change', this.orientationChangeHandler);
   }
 
@@ -33,14 +33,14 @@ export default class BaseScreen extends React.Component {
     const isLandscape = width > height;
     this.setState({ isPortrait: !isLandscape });
     this.props.navigation.setParams({ tabBarHidden: isLandscape });
-    ScreenOrientation.allow(ScreenOrientation.Orientation.ALL);
+    ScreenOrientation.allowAsync(ScreenOrientation.Orientation.ALL);
   }
 
   switchToLandscape() {
-    ScreenOrientation.allow(ScreenOrientation.Orientation.LANDSCAPE);
+    ScreenOrientation.allowAsync(ScreenOrientation.Orientation.LANDSCAPE);
   }
 
   switchToPortrait() {
-    ScreenOrientation.allow(ScreenOrientation.Orientation.PORTRAIT);
+    ScreenOrientation.allowAsync(ScreenOrientation.Orientation.PORTRAIT);
   }
 }
