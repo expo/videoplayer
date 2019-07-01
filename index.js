@@ -122,6 +122,8 @@ export default class VideoPlayer extends React.Component {
     switchToPortrait: PropTypes.func,
 
     showControlsOnLoad: PropTypes.bool,
+
+    isLive: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -161,6 +163,7 @@ export default class VideoPlayer extends React.Component {
       );
     },
     showControlsOnLoad: false,
+    isLive: false,
   };
 
   constructor(props) {
@@ -535,6 +538,7 @@ export default class VideoPlayer extends React.Component {
   };
 
   render() {
+    const isLive = this.props.isLive;
     const videoWidth = Dimensions.get('window').width;
     const videoHeight = videoWidth * (9 / 16);
     const centeredContentWidth = 60;
@@ -545,6 +549,7 @@ export default class VideoPlayer extends React.Component {
     const FullscreenEnterIcon = this.props.fullscreenEnterIcon;
     const FullscreenExitIcon = this.props.fullscreenExitIcon;
     const ReplayIcon = this.props.replayIcon;
+
 
     // Do not let the user override `ref`, `callback`, and `style`
     const {
@@ -714,24 +719,28 @@ export default class VideoPlayer extends React.Component {
             </Text>
 
             {/* Seek bar */}
-            <TouchableWithoutFeedback
-              onLayout={this._onSliderLayout.bind(this)}
-              onPress={this._onSeekBarTap.bind(this)}>
-              <Slider
-                style={{ marginRight: 10, marginLeft: 10, flex: 1 }}
-                trackImage={this.props.trackImage}
-                thumbImage={this.props.thumbImage}
-                value={this._getSeekSliderPosition()}
-                onValueChange={this._onSeekSliderValueChange}
-                onSlidingComplete={this._onSeekSliderSlidingComplete}
-                disabled={
-                  this.state.playbackState === PLAYBACK_STATES.LOADING ||
-                  this.state.playbackState === PLAYBACK_STATES.ENDED ||
-                  this.state.playbackState === PLAYBACK_STATES.ERROR ||
-                  this.state.controlsState !== CONTROL_STATES.SHOWN
-                }
-              />
-            </TouchableWithoutFeedback>
+            
+            {isLive === false && (
+              <TouchableWithoutFeedback
+                onLayout={this._onSliderLayout.bind(this)}
+                onPress={this._onSeekBarTap.bind(this)}>
+                <Slider
+                  style={{ marginRight: 10, marginLeft: 10, flex: 1 }}
+                  trackImage={this.props.trackImage}
+                  thumbImage={this.props.thumbImage}
+                  value={this._getSeekSliderPosition()}
+                  onValueChange={this._onSeekSliderValueChange}
+                  onSlidingComplete={this._onSeekSliderSlidingComplete}
+                  disabled={
+                    this.state.playbackState === PLAYBACK_STATES.LOADING ||
+                    this.state.playbackState === PLAYBACK_STATES.ENDED ||
+                    this.state.playbackState === PLAYBACK_STATES.ERROR ||
+                    this.state.controlsState !== CONTROL_STATES.SHOWN
+                  }
+                />
+              </TouchableWithoutFeedback>
+            )}
+            
 
             {/* Duration display */}
             <Text
@@ -739,7 +748,7 @@ export default class VideoPlayer extends React.Component {
                 this.props.textStyle,
                 { backgroundColor: 'transparent', marginRight: 5 },
               ]}>
-              {this._getMMSSFromMillis(this.state.playbackInstanceDuration)}
+              {(isLive)?'LIVE':this._getMMSSFromMillis(this.state.playbackInstanceDuration)}
             </Text>
 
             {/* Fullscreen control */}
@@ -767,3 +776,4 @@ export default class VideoPlayer extends React.Component {
 }
 
 reactMixin(VideoPlayer.prototype, TimerMixin);
+
